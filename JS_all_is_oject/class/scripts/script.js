@@ -8,7 +8,6 @@ window.onload = function () {
         }
     }
     class Cat extends Animal{
-
         constructor(){
             super();
             this.mustache = true;
@@ -18,6 +17,7 @@ window.onload = function () {
             return 'myaumayu'    
         }
     }
+
     class Dog extends Animal{
         constructor(){
             super();
@@ -28,14 +28,13 @@ window.onload = function () {
             return 'gafgaf'    
         }
     }
+    
     class Tiger extends Cat {
         constructor(){
             super();
             this.color = 'ginger';
         }
     }
-
-  
 
     let cat = new Cat();
     let dog = new Dog();
