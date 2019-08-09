@@ -1,0 +1,1 @@
+function o(o,l){return console.log("Hi"),o/l}console.log(o(19,4)),console.log(o(1,74)),console.log(o(1,94)),console.log(o(17,4)),console.log(o(1,45)),console.log(o(1,44)),console.log(o(10,4));

@@ -2,3 +2,21 @@ body {
     color:red;
 }
 
+.row {
+    display: flex;
+}
+
+a{
+    color: gray;
+}
+
+strong{
+    color: grey;
+}
+
+@media screen and (max-width: 200px){
+    body{
+        font-size: 24;
+    }
+}
+
