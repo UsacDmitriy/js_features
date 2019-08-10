@@ -4,6 +4,7 @@ const autoprefixer = require('gulp-autoprefixer');
 let cleanCSS = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
 let del = require('del');
+var browserSync = require('browser-sync').create();
 
 
 const cssFiles = [
@@ -26,7 +27,8 @@ function styles(){
                         cascade: false
                     }))
                     .pipe(cleanCSS({level: 2}))
-                    .pipe(gulp.dest('./build/css'));
+                    .pipe(gulp.dest('./build/css'))
+                    .pipe(browserSync.stream());
 };
 
 function script() {
@@ -35,12 +37,20 @@ function script() {
         .pipe(uglify({
             toplevel:true
         }))
-        .pipe(gulp.dest('./build/js'));
+        .pipe(gulp.dest('./build/js'))
+        .pipe(browserSync.stream());
 };
 
 function watch(){
+    browserSync.init({
+        server: {
+            baseDir: "./"
+        },
+        tunnel: true
+    });
     gulp.watch('./src/css/**/*.css', styles);
     gulp.watch('./src/js/**/*.js', script);
+    gulp.watch('./*.html', browserSync.reload);
 }
 
 function clean(){
@@ -52,3 +62,4 @@ gulp.task('script', script);
 gulp.task('watch', watch);
 
 gulp.task('build', gulp.series(clean, gulp.parallel(styles, script)));
+gulp.task('dev', gulp.series('build', 'watch'));
